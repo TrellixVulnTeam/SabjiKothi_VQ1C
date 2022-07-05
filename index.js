@@ -48,7 +48,6 @@ app.post("/bookNow", (req, res) => {
 });
 
 var server = https.createServer(options, app);
-
-server.listen(3000, () => {
-  console.log("server starting on port : " + "3000");
+server.listen(process.env.PORT || 5000, () => {
+  console.log("server starting");
 });
