@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title> Form</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../css/Untitled-2.css" type="text/css">
+</head>
+
+<body>
+  <nav>
+    <div class="logo">
+      <img src="../image/Saptkrishi_Logo_Dark_BG-ai.png" />
+    </div>
+    <div class="menu">
+      <a href="index.html">Home</a>
+      <a href="gallery.html">Gallery</a>
+      <a style="background-color: coral; padding: 5px" href="book_now.html">Book Now</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <h3>Booking Form</h3>
+    <form id='myForm' action="/action_page.php">
+      <label for="fname">Full Name <span>(required, at least 3 characters)</span> </label>
+      <input type="text" id="fname" name="fullname"  minlength="3" id='name' placeholder="Your name.." required>
+
+      <label for="pnumber">Phone Number</label>
+      <input type="text" id="pnumber" name="phonenumber" placeholder="Enter Phone Number .." required>
+
+      <label for="emailid">Email ID <span>(required)</span> </label>
+      <input type="text" id="emailid" name="emailid" placeholder="Enter your Email ID .." required>
+
+      <label for="address">Address</label>
+
+      <textarea id="address" name="subject" placeholder="Write something.." style="height:100px" required></textarea>
+
+      <label for="state">State</label>
+      <input type="text" id="state" name="state" placeholder="State here.." required>
+      <label for="zip">Pin Code</label>
+      <input type="text" id="zip" name="zip" placeholder="10001" required>
+      <label for="quantity">Quantity</label>
+      <input type="text" id="quantity" name="quantity" placeholder="Enter number of quantity .." required>
+      <input type="submit" value="Book Now">
+    </form>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script>
+    $('#myForm').on('submit', (e) => {
+      e.preventDefault();
+      const Fn = $('#fname').val();
+      Fn?.trim();
+      const email = $('#emailid').val();
+      email?.trim();
+      const Phone = $('#pnumber').val();
+      Phone?.trim();
+      const State = $('#state').val();
+      State?.trim();
+      const Address = $('#address').val();
+      Address?.trim();
+      const Zip = $('#zip').val();
+      Zip?.trim();
+      const Quantity = $('#quantity').val();
+      Quantity?.trim();
+
+      const subject = 'Booking of Sabji Kothi';
+      const text = "Mob no:" + Phone;
+      const name = Fn;
+
+      const data = {
+        email,
+        subject,
+        text,
+        name,
+        State,
+        Address,
+        Zip,
+        Quantity,
+      };
+      // $.post('/bookNow', data, function () {
+      //   //swal("Success", "Order Placed!", { icon: "success", });
+      //   Swal.fire({
+      //     title: 'Success!',
+      //     text: 'Order Placed!',
+      //     icon: 'success',
+      //     confirmButtonText: 'Cool'
+      //   })
+      //   console.log('Booked');
+      // })
+      $.post("/bookNow",data)
+      .done(function(data){
+        Swal.fire({
+          title: 'Success!',
+          text: 'Order Placed!',
+          icon: 'success',
+          confirmButtonText: 'Cool'
+        })
+      })
+      .fail(function(xhr,status,error){
+        Swal.fire({
+          title: 'Fill correct details!',
+          text: 'Order Not Placed!',
+          icon: 'error',
+          confirmButtonText: 'Retry'
+        })
+      });
+    });
+
+  </script>
+</body>
+
+</html>
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=\, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+
+<body>
+  <form action="/bookNow" method="post" id="myForm" enctype="application/x-www-form-urlencoded">
+    <label for="First Name">First Name</label>
+    <input type="text" id="First_name" required />
+    <label id="Last Name">Last Name</label>
+    <input type="text" id="Last_name" required />
+    <label for="email">Email</label>
+    <input type="email" id="Email"/>
+    <label for="Phone">Phone Number</label>
+    <input type="tel" id="Phone" requried />
+    <input type="submit" />
+  </form>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+  $('#myForm').on('submit',(e)=>{
+    e.preventDefault();
+    const Fn=$('#First_name').val();
+    Fn?.trim();
+    const Ln=$('#Last_name').val();
+    Ln?.trim();
+    const email=$('#Email').val();
+    email?.trim();
+    const Phone=$('#Phone').val();
+    Phone?.trim();
+    
+    const subject='Order';
+    const text="Mob no."+Phone+" ";
+    const name=Fn+" "+Ln;
+    
+    const data={
+      email,
+      subject,
+      text,
+      name,
+    };
+    $.post('/bookNow',data,function(){
+      console.log('Booked');
+    })
+  });
+</script>
+
+</html> -->

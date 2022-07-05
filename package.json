@@ -1,0 +1,30 @@
+{
+  "name": "landing-page",
+  "version": "1.0.0",
+  "description": "SabjiKothi",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/botAB09/SabjiKothi.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/botAB09/SabjiKothi/issues"
+  },
+  "homepage": "https://github.com/botAB09/SabjiKothi#readme",
+  "dependencies": {
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "form-data": "^4.0.0",
+    "multiparty": "^4.2.3",
+    "nodemailer": "^6.7.6",
+    "nodemailer-mailgun-transport": "^2.1.4"
+  },
+  "devDependencies": {
+    "node-sass": "^7.0.1"
+  }
+}
