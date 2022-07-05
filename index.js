@@ -1,4 +1,5 @@
-const https = require("https");
+const http = require("http");
+// const https=require("https");
 const express = require("express");
 const fs = require("fs");
 const sendMail = require('./mail');
@@ -9,10 +10,10 @@ app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 app.use(express.static(__dirname + "/static"));
 
-const options = {
-  key: fs.readFileSync("key.pem"),
-  cert: fs.readFileSync("cert.pem"),
-};
+// const options = {
+//   key: fs.readFileSync("key.pem"),
+//   cert: fs.readFileSync("cert.pem"),
+// };
 
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/public/index.html", (err) => {
@@ -47,7 +48,16 @@ app.post("/bookNow", (req, res) => {
 });
 });
 
-var server = https.createServer(options, app);
-server.listen(process.env.PORT || 5000, () => {
-  console.log("server starting");
+// var server = http.createServer(options, app);
+// server.listen(process.env.PORT || 5000, () => {
+//   console.log("server starting");
+// });
+var httpServer = http.createServer(app);
+httpServer.listen(process.env.PORT || 5000,()=>{
+  console.log('Server Starting');
 });
+
+// app.listen(process.env.PORT || 5000, function () {
+//   console.log('Server Starting.');
+// });
+
