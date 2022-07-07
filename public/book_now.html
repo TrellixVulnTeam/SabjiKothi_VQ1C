@@ -21,7 +21,7 @@
 
   <div class="container">
     <h3>Booking Form</h3>
-    <form id='myForm' action="/action_page.php">
+    <form id='myForm' action="/bookNow" method="post">
       <label for="fname">Full Name <span>(required, at least 3 characters)</span> </label>
       <input type="text" id="fname" name="fullname"  minlength="3" id='name' placeholder="Your name.." required>
 
@@ -97,6 +97,7 @@
           icon: 'success',
           confirmButtonText: 'Cool'
         })
+        console.log('Booked');
       })
       .fail(function(xhr,status,error){
         Swal.fire({
