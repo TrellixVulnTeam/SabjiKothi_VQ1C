@@ -35,6 +35,11 @@ app.get("/index.html",(req,res)=>{
     if(err) throw err;
   })
 })
+app.get("/certificates.html",(req,res)=>{
+  res.sendFile(__dirname+"/public/certificates.html",(err)=>{
+    if(err) throw err;
+  })
+})
 app.post("/bookNow", (req, res) => {
   const{subject,email,text,name,State,Address,Zip,Quantity}=req.body;
   console.log(req.body);
